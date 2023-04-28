@@ -18,9 +18,15 @@ namespace WebApp.Api.Controllers
             this.clientService = clientService;
         }
 
-        [HttpGet(Name = "GetClient")]
-        public async Task<IActionResult> GetClientList(ClientRequest clientRequest)
+        [HttpGet("v1/GetClient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetClientList([FromQuery] ClientRequest clientRequest)
         {
+            var token = Request.Headers["Authorization"];
+            if (token.Count <= 0)
+                return Unauthorized();
+
             logger.LogInformation($"Getting list of clients with name {clientRequest.FirstName}.");
 
             var clientList = await clientService.GetClientsByName(clientRequest.FirstName);
@@ -30,8 +36,25 @@ namespace WebApp.Api.Controllers
                 logger.LogWarning(resultNull);
                 return BadRequest(new ErrorResponse { Code = "2", Message = resultNull });
             }
-            
+
             return StatusCode(200, clientList);
+        }
+
+        [HttpPost("v1/UpdateClient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateClient([FromBody]ClientRequest clientRequest, [FromHeader]string id)
+        {
+            var token = Request.Headers["Authorization"];
+            if (token.Count <= 0)
+                return Unauthorized();
+
+            if (string.IsNullOrEmpty(id))
+                return BadRequest("Identificator not informed");
+
+            //TODO: update client
+
+            return StatusCode(200);
         }
     }
 }
