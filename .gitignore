@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/WebApp.Test/obj/Debug/net6.0
+/WebApp.Infra/obj
+/WebApp.Domain/obj
+/WebApp.Core/obj
+/.vs
+/WebApp.Core/bin/Debug/net6.0
+/WebApp.Domain/bin/Debug/net6.0
+/WebApp.Infra/bin/Debug/net6.0
+/WebApp.Test/bin/Debug/net6.0
+/WebApp.Test/obj
