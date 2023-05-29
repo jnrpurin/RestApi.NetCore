@@ -1,56 +1,28 @@
-using Microsoft.OpenApi.Models;
-using WebApp.Core;
-using WebApp.Infra;
+using System.Globalization;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(opt =>
+namespace WebApp.Api
 {
-    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp.API", Version = "v1" });
-    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    public class Program
     {
-        In = ParameterLocation.Header,
-        Description = "Inform a valid token",
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        BearerFormat = "JWT",
-        Scheme = "Bearer"
-    });
-    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+        public static void Main(string[] args)
+        {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, builder) =>
                 {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme, Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
+                    var env = context.HostingEnvironment;
+                    builder.SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                        .AddJsonFile($"secrets/appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                        .Build();
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
                 });
-});
-
-builder.Services.AddBussinessServices();
-builder.Services.AddSqlServerDbSession();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

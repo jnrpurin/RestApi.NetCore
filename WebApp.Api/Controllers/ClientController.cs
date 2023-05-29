@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApp.Core.Interface;
 using WebApp.Domain.Models;
 using WebApp.Domain.Request;
+using WebApp.Infra.Service;
 
 namespace WebApp.Api.Controllers
 {
@@ -11,12 +12,18 @@ namespace WebApp.Api.Controllers
     {
         private readonly ILogger<ClientController> logger;
         private readonly IClientService clientService;
+        private readonly CustomerService customerService;
 
-        public ClientController(ILogger<ClientController> logger, IClientService clientService)
+
+        public ClientController(ILogger<ClientController> logger, IClientService clientService, CustomerService customerService)
         {
             this.logger = logger;
             this.clientService = clientService;
+            this.customerService = customerService;
         }
+
+        [HttpGet("v1/GetMongoCustomer")]
+        public async Task<List<Customers>> Get() => await customerService.GetAsync();
 
         [HttpGet("v1/GetClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
