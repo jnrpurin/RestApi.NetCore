@@ -29,7 +29,7 @@ namespace WebApp.Api
             services.AddMvc();
             services.AddSwaggerGen(opt =>
             {
-                opt.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp.API", Version = "v1" });
+                opt.SwaggerDoc("v1 teste hangfire", new OpenApiInfo { Title = "WebApp.API", Version = "v1" });
                 opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -54,31 +54,12 @@ namespace WebApp.Api
                 });
             });
 
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                options.DefaultRequestCulture = new RequestCulture("pt-BR");
-                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("pt-BR") };
-                options.SetDefaultCulture("pt-BR");
-                options.RequestCultureProviders = new List<IRequestCultureProvider>
-                {
-                    new QueryStringRequestCultureProvider(),
-                    new CookieRequestCultureProvider()
-                };
-            });
             services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDatabaseCustomer"));
             services.AddSingleton<CustomerService>();
 
             services.AddSingleton<HttpClient>();
             services.AddTransient<IClientAutoUpdateService, ClientAutoUpdateService>();
 
-            //services.AddHangfire(configuration => configuration
-            //    .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
-            //    .UseSimpleAssemblyNameTypeSerializer()
-            //    .UseRecommendedSerializerSettings()
-            //    .UseSqlServerStorage(Configuration.GetConnectionString("MyDataBase"))
-            //);
-
-            //var mongoConnection = Configuration.GetConnectionString("MongoDatabaseCustomer:ConnectionString");
             var options = new MongoStorageOptions
             {
                 MigrationOptions = new MongoMigrationOptions
@@ -93,8 +74,7 @@ namespace WebApp.Api
                 config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170);
                 config.UseSimpleAssemblyNameTypeSerializer();
                 config.UseRecommendedSerializerSettings();
-                config.UseMongoStorage(@"mongodb://admin:27HSurWhyIW5QCan@ac-n6zwu7z-shard-00-02.7v36vpv.mongodb.net:27017/sample_analytics?authSource=admin", options);
-                //mongodb://user:password@ipaddress:port/DbName?authSource=admin
+                config.UseMongoStorage(@"mongodb+srv://admin:27HSurWhyIW5QCan@clustertest.7v36vpv.mongodb.net/sample_analytics?authSource=admin", options);
             });
             services.AddHangfireServer();
 
@@ -107,6 +87,8 @@ namespace WebApp.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApp.Api v1"));
             }
 
             app.UseHttpsRedirection();
@@ -120,7 +102,7 @@ namespace WebApp.Api
             var clientUpdate = app.ApplicationServices.GetService<IClientAutoUpdateService>();
 
             //TODO: add quando metodo ClientAutoUpdate() estiver desenvolvido
-            //RecurringJob.AddOrUpdate("ClientAutoUpdate", () => clientUpdate.ClientAutoUpdate(), "5 * * * *");
+            RecurringJob.AddOrUpdate("ClientAutoUpdate", () => clientUpdate.ClientAutoUpdate(), "5 * * * *");
             //BackgroundJob.Enqueue(() => clientUpdate.ClientAutoUpdate());
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

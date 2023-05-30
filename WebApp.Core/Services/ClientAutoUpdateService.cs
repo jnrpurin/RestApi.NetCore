@@ -16,7 +16,8 @@ namespace WebApp.Core.Services
             try
             {
                 logger.LogInformation($" ClientAutoUpdate() - Inicio");
-
+                await Task.Run(() => { Console.WriteLine($"Usando hangfire - {DateTime.Now}"); });
+                
                 //TODO: implement auto update from client data
             }
             catch (Exception ex)

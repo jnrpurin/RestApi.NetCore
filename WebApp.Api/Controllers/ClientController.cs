@@ -22,8 +22,8 @@ namespace WebApp.Api.Controllers
             this.customerService = customerService;
         }
 
-        [HttpGet("v1/GetMongoCustomer")]
-        public async Task<List<Customers>> Get() => await customerService.GetAsync();
+        //[HttpGet("v1/GetMongoCustomer")]
+        //public async Task<List<Customers>> Get() => await customerService.GetAsync();
 
         [HttpGet("v1/GetClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -47,21 +47,21 @@ namespace WebApp.Api.Controllers
             return StatusCode(200, clientList);
         }
 
-        [HttpPost("v1/UpdateClient")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateClient([FromBody]ClientRequest clientRequest, [FromHeader]string id)
-        {
-            var token = Request.Headers["Authorization"];
-            if (token.Count <= 0)
-                return Unauthorized();
+        //[HttpPost("v1/UpdateClient")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<IActionResult> UpdateClient([FromBody]ClientRequest clientRequest, [FromHeader]string id)
+        //{
+        //    var token = Request.Headers["Authorization"];
+        //    if (token.Count <= 0)
+        //        return Unauthorized();
 
-            if (string.IsNullOrEmpty(id))
-                return BadRequest("Identificator not informed");
+        //    if (string.IsNullOrEmpty(id))
+        //        return BadRequest("Identificator not informed");
 
-            //TODO: update client
+        //    //TODO: update client
 
-            return StatusCode(200);
-        }
+        //    return StatusCode(200);
+        //}
     }
 }
