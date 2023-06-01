@@ -11,5 +11,6 @@ namespace WebApp.Core.Interface
         /// <returns>List of clients</returns>
         Task<IEnumerable<ClientInfo>> GetClientsByName(string name);
 
+        Task<int> UpdateClient(ClientInfo clientInfo);
     }
 }

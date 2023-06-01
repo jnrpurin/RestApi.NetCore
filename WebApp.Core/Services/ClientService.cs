@@ -14,5 +14,11 @@ namespace WebApp.Core.Services
         }
 
         public async Task<IEnumerable<ClientInfo>> GetClientsByName(string name) => await myDatabaseRepository.GetClientInfoList(name);
+
+
+        public async Task<int> UpdateClient(ClientInfo clientInfo)
+        {
+            return await myDatabaseRepository.UpdateClient(clientInfo);
+        }
     }
 }

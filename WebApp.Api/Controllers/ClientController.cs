@@ -2,30 +2,24 @@ using Microsoft.AspNetCore.Mvc;
 using WebApp.Core.Interface;
 using WebApp.Domain.Models;
 using WebApp.Domain.Request;
-using WebApp.Infra.Service;
 
 namespace WebApp.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[client]")]
     public class ClientController : ControllerBase
     {
         private readonly ILogger<ClientController> logger;
         private readonly IClientService clientService;
-        private readonly CustomerService customerService;
 
-
-        public ClientController(ILogger<ClientController> logger, IClientService clientService, CustomerService customerService)
+        public ClientController(ILogger<ClientController> logger, IClientService clientService)
         {
             this.logger = logger;
             this.clientService = clientService;
-            this.customerService = customerService;
         }
 
-        //[HttpGet("v1/GetMongoCustomer")]
-        //public async Task<List<Customers>> Get() => await customerService.GetAsync();
 
-        [HttpGet("v1/GetClient")]
+        [HttpGet("v1/GetClientList")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetClientList([FromQuery] ClientRequest clientRequest)
@@ -47,21 +41,29 @@ namespace WebApp.Api.Controllers
             return StatusCode(200, clientList);
         }
 
-        //[HttpPost("v1/UpdateClient")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //public async Task<IActionResult> UpdateClient([FromBody]ClientRequest clientRequest, [FromHeader]string id)
-        //{
-        //    var token = Request.Headers["Authorization"];
-        //    if (token.Count <= 0)
-        //        return Unauthorized();
+        [HttpPost("v1/UpdateClient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateClient([FromBody] ClientRequest clientRequest, [FromHeader] int id)
+        {
+            var token = Request.Headers["Authorization"];
+            if (token.Count <= 0)
+                return Unauthorized();
 
-        //    if (string.IsNullOrEmpty(id))
-        //        return BadRequest("Identificator not informed");
+            if (string.IsNullOrEmpty(id))
+                return BadRequest("Identificator not informed");
 
-        //    //TODO: update client
+            
+            await clientService.UpdateClient(new ClientInfo
+            {
+                ClientId = id,
+                Age = clientRequest.Age,
+                FirstName = clientRequest.FirstName,
+                LastName = clientRequest.LastName,
+                Email = clientRequest.Email
+            });
 
-        //    return StatusCode(200);
-        //}
+            return Ok();
+        }
     }
 }

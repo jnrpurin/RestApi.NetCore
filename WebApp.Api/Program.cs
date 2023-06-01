@@ -1,12 +1,9 @@
-using System.Globalization;
-
 namespace WebApp.Api
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
             CreateHostBuilder(args).Build().Run();
         }
 
