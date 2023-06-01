@@ -2,7 +2,7 @@
 using WebApp.Domain.Command;
 using WebApp.Domain.Entity;
 using WebApp.Domain.Notifications;
-using WebApp.Infra.Repository;
+using WebApp.Infra.Service;
 
 namespace WebApp.Core.Handler
 {

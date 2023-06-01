@@ -1,6 +1,5 @@
 ﻿using MongoDB.Driver;
 using WebApp.Domain.Entity;
-using WebApp.Infra.Repository;
 
 namespace WebApp.Infra.Service
 {
@@ -56,27 +55,27 @@ namespace WebApp.Infra.Service
             produtos = GetProdutos();
         }
 
-        Task<IEnumerable<Product>> IRepositoryMongo<Product>.GetAll()
+        private Task<IEnumerable<Product>> IRepositoryMongo<Product>.GetAll()
         {
             throw new NotImplementedException();
         }
 
-        Task<Product> IRepositoryMongo<Product>.Get(int id)
+        private Task<Product> IRepositoryMongo<Product>.Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        Task IRepositoryMongo<Product>.Add(Product item)
+        private Task IRepositoryMongo<Product>.Add(Product item)
         {
             throw new NotImplementedException();
         }
 
-        Task IRepositoryMongo<Product>.Edit(Product item)
+        private Task IRepositoryMongo<Product>.Edit(Product item)
         {
             throw new NotImplementedException();
         }
 
-        Task IRepositoryMongo<Product>.Delete(int id)
+        private Task IRepositoryMongo<Product>.Delete(int id)
         {
             throw new NotImplementedException();
         }

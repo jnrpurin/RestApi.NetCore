@@ -5,9 +5,9 @@ using WebApp.Domain.Request;
 
 namespace WebApp.Api.Controllers
 {
+    [Route("clientes")]
     [ApiController]
-    [Route("[client]")]
-    public class ClientController : ControllerBase
+    public class ClientController : Controller
     {
         private readonly ILogger<ClientController> logger;
         private readonly IClientService clientService;
@@ -20,8 +20,6 @@ namespace WebApp.Api.Controllers
 
 
         [HttpGet("v1/GetClientList")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetClientList([FromQuery] ClientRequest clientRequest)
         {
             var token = Request.Headers["Authorization"];
@@ -42,15 +40,13 @@ namespace WebApp.Api.Controllers
         }
 
         [HttpPost("v1/UpdateClient")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateClient([FromBody] ClientRequest clientRequest, [FromHeader] int id)
         {
             var token = Request.Headers["Authorization"];
             if (token.Count <= 0)
                 return Unauthorized();
 
-            if (string.IsNullOrEmpty(id))
+            if (id <= 0)
                 return BadRequest("Identificator not informed");
 
             

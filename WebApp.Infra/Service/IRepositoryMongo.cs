@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WebApp.Infra.Repository
+namespace WebApp.Infra.Service
 {
     public interface IRepositoryMongo<T>
     {
