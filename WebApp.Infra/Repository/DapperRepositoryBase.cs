@@ -16,7 +16,7 @@ namespace WebApp.Infra.Repository
         protected DapperRepositoryBase(ISqlServerCustomContext customSqlContext)
         {
             SqlServerDbConnection = customSqlContext.GetConnection();
-            SqlServerDbConnection.Open();
+            //SqlServerDbConnection.Open();
         }
 
         public async Task<IEnumerable<T>> FindAsync(string query, object parameters = null)

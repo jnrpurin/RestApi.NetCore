@@ -10,7 +10,7 @@ namespace WebApp.Core
     {
         public static IServiceCollection AddBussinessServices(this IServiceCollection services)
         {
-            services.AddScoped<IClientService, ClientService>();
+            services.AddTransient<IClientService, ClientService>();
 
             return services;
         }
