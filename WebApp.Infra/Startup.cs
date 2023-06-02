@@ -8,11 +8,11 @@ namespace WebApp.Infra
     [ExcludeFromCodeCoverage]
     public static class Startup
     {
-        public static IServiceCollection AddSqlServerDbSession(this IServiceCollection services)
+        public static IServiceCollection AddInfraServices(this IServiceCollection services)
         {
             services.AddTransient<MyDatabaseContext>();
 
-            services.AddScoped<IMyDatabaseRepository, MyDatabaseRepository>();
+            services.AddTransient<IMyDatabaseRepository, MyDatabaseRepository>();
 
             return services;
         }
