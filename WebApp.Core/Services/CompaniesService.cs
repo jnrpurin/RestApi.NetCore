@@ -13,7 +13,7 @@ namespace WebApp.Core.Services
             _companiesRepository = companiesRepository;
         }
 
-        public async Task<IEnumerable<Companies>> GetNCompanies(int nroCompanies = 1) => await _companiesRepository.GetAsync(nroCompanies);
+        public async Task<IEnumerable<Companies>> GetNCompanies(int nroCompanies) => await _companiesRepository.GetAsync(nroCompanies);
 
         public async Task<Companies?> GetCompanieById(string id) => await _companiesRepository.GetAsync(id);
 

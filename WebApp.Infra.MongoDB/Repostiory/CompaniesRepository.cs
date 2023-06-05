@@ -2,6 +2,7 @@
 using WebApp.Domain.MongoEntities;
 using WebApp.Infra.MongoDB.Settings;
 using Microsoft.Extensions.Options;
+using System.Data;
 
 namespace WebApp.Infra.MongoDB.Repostiory
 {
@@ -31,8 +32,11 @@ namespace WebApp.Infra.MongoDB.Repostiory
                 CompanieDatabaseSettings.Value.CompanieCollectionName);
         }
 
-        public async Task<List<Companies>> GetAsync(int nroLimit) =>
-            await _companiesCollection.Find(_ => true).Limit(nroLimit).ToListAsync();
+        public async Task<List<Companies>> GetAsync(int nroLimit)
+        {
+            var limit = nroLimit > 0 ? nroLimit : 1;
+            return await _companiesCollection.Find(_ => true).Limit(limit).ToListAsync();
+        }
 
         public async Task<Companies?> GetAsync(string id) =>
             await _companiesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();

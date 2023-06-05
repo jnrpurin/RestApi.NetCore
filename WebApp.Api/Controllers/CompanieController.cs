@@ -14,7 +14,7 @@ namespace WebApp.Api.Controllers
             _companieService = companieService;
 
         [HttpGet]
-        public async Task<IEnumerable<Companies>> GetCompanie([FromBody] int nroCompanie) =>
+        public async Task<IEnumerable<Companies>> GetCompanie(int nroCompanie) =>
             await _companieService.GetNCompanies(nroCompanie);
 
         [HttpGet("{id:length(24)}")]

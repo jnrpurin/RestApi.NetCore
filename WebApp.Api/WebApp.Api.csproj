@@ -20,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\WebApp.Core\WebApp.Core.csproj" />
     <ProjectReference Include="..\WebApp.Domain\WebApp.Domain.csproj" />
-    <ProjectReference Include="..\WebApp.Infra.MongoDB\WebApp.Infra.MongoDB.csproj" />
     <ProjectReference Include="..\WebApp.Infra\WebApp.Infra.csproj" />
   </ItemGroup>
 
