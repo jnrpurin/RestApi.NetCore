@@ -1,0 +1,15 @@
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\bin\Debug\net7.0\WebApp.Infra.MongoDB.deps.json
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\bin\Debug\net7.0\WebApp.Infra.MongoDB.dll
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\bin\Debug\net7.0\WebApp.Infra.MongoDB.pdb
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\bin\Debug\net7.0\WebApp.Domain.dll
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\bin\Debug\net7.0\WebApp.Domain.pdb
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.csproj.AssemblyReference.cache
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.AssemblyInfoInputs.cache
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.AssemblyInfo.cs
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.csproj.CoreCompileInputs.cache
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.csproj.CopyComplete
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.dll
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\refint\WebApp.Infra.MongoDB.dll
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\WebApp.Infra.MongoDB.pdb
+D:\ProjetosDev\.Net c#\WebApp.Api\WebApp.Infra.MongoDB\obj\Debug\net7.0\ref\WebApp.Infra.MongoDB.dll

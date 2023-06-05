@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 using WebApp.Core;
 using WebApp.Core.Interface;
 using WebApp.Infra;
+using WebApp.Infra.MongoDB;
+using WebApp.Infra.MongoDB.Settings;
 
 namespace WebApp.Api
 {
@@ -37,6 +39,10 @@ namespace WebApp.Api
             services.AddMemoryCache();
             services.AddBussinessServices();
             services.AddInfraServices();
+
+            services.Configure<CompanieSettings>(
+                Configuration.GetSection("CompaniesDatabase"));
+            services.AddMongoDBServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -11,6 +11,7 @@ namespace WebApp.Core
         public static IServiceCollection AddBussinessServices(this IServiceCollection services)
         {
             services.AddTransient<IClientService, ClientService>();
+            services.AddTransient<CompaniesService>();
 
             return services;
         }
