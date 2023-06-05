@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "30kAkOkMvc0yF3SoPtyaWlA7i+39ZEUnzk1J0kbZx7ddYYCjzw1CfzqvWFJtn59BWrFRSQJxg+zujbsAhnWdww==",
+  "dgSpecHash": "2I1NKBJVCFOAt7Gb0/lKKQWkDRZqvhaHyqzf7WOZifKlvhq+oh/sOpvGeghzvan4kBcAVInTpsrBKvJ2Aa0HLg==",
   "success": true,
   "projectFilePath": "D:\\ProjetosDev\\.Net c#\\WebApp.Api\\WebApp.Infra.MongoDB\\WebApp.Infra.MongoDB.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\PC-Junior\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "C:\\Users\\PC-Junior\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\PC-Junior\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\PC-Junior\\.nuget\\packages\\microsoft.extensions.configuration.binder\\7.0.4\\microsoft.extensions.configuration.binder.7.0.4.nupkg.sha512",
     "C:\\Users\\PC-Junior\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\PC-Junior\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\PC-Junior\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",

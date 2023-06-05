@@ -12,6 +12,7 @@ namespace WebApp.Core
         {
             services.AddTransient<IClientService, ClientService>();
             services.AddTransient<CompaniesService>();
+            services.AddTransient<InspectionsService>();
 
             return services;
         }
