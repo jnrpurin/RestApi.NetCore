@@ -7,7 +7,7 @@ namespace WebApp.Domain.MongoEntities
     public class Inspections: IEntity
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        //[BsonRepresentation(BsonType.ObjectId)]
         public Guid Id { get; set; }
         //public string? Id { get; set; }
 
