@@ -1,6 +1,8 @@
 ﻿using Hangfire;
 using Hangfire.MemoryStorage;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 using WebApp.Core;
 using WebApp.Core.Interface;
 using WebApp.Infra;
@@ -42,7 +44,11 @@ namespace WebApp.Api
 
             services.Configure<CompanieSettings>(
                 Configuration.GetSection("CompaniesDatabase"));
-            services.AddMongoDBServices();
+
+            //var mongoUrl = new MongoUrl(Configuration.GetConnectionString("MongoDb"));
+            //services.AddSingleton(new MongoClient(mongoUrl));
+
+            services.AddMongoDBServices(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
