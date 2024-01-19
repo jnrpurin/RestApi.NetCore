@@ -18,7 +18,7 @@ namespace WebApp.Api.Controllers
             this.clientService = clientService;
         }
 
-        [HttpGet("v1/GetClient")]
+        [HttpGet("/v1/GetClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetClientList([FromQuery] ClientRequest clientRequest)
@@ -40,19 +40,28 @@ namespace WebApp.Api.Controllers
             return StatusCode(200, clientList);
         }
 
-        [HttpPost("v1/UpdateClient")]
+        [HttpPost("/v1/UpdateClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateClient([FromBody]ClientRequest clientRequest, [FromHeader]string id)
+        public async Task<IActionResult> UpdateClient([FromBody]ClientResponse clientResponse, [FromHeader]int id)
         {
             var token = Request.Headers["Authorization"];
             if (token.Count <= 0)
                 return Unauthorized();
 
-            if (string.IsNullOrEmpty(id))
+            if (id <= 0)
                 return BadRequest("Identificator not informed");
 
-            //TODO: update client
+            await clientService.UpdateClient(
+                new ClientInfo
+                {
+                    ClientId = id,
+                    FirstName = clientResponse.FirstName,
+                    LastName = clientResponse.LastName,
+                    Age = clientResponse.Age,
+                    Email = clientResponse.Email,
+                    PhoneNumber = clientResponse.PhoneNumber,
+                });
 
             return StatusCode(200);
         }

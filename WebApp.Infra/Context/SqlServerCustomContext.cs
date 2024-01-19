@@ -9,7 +9,7 @@ namespace WebApp.Infra.Context
     {
         IDbConnection GetConnection();
     }
-
+    
     [ExcludeFromCodeCoverage]
     public class SqlServerCustomContext : ISqlServerCustomContext, IDisposable
     {
