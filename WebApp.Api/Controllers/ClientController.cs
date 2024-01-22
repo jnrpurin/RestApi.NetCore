@@ -18,7 +18,14 @@ namespace WebApp.Api.Controllers
             this.clientService = clientService;
         }
 
-        [HttpGet("/v1/GetClient")]
+        [HttpGet("/GetAllClients")]
+        public async Task<IActionResult> GetAllClients()
+        {
+            var clientList = await clientService.GetAllClients();
+            return StatusCode(200, clientList);
+        }
+
+        [HttpGet("/GetClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetClientList([FromQuery] ClientRequest clientRequest)
@@ -40,7 +47,7 @@ namespace WebApp.Api.Controllers
             return StatusCode(200, clientList);
         }
 
-        [HttpPost("/v1/UpdateClient")]
+        [HttpPost("/UpdateClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateClient([FromBody]ClientResponse clientResponse, [FromHeader]int id)

@@ -13,6 +13,8 @@ namespace WebApp.Core.Services
             this.myDatabaseRepository = myDatabaseRepository;
         }
 
+        public async Task<IEnumerable<ClientInfo>> GetAllClients() => await myDatabaseRepository.GetAllClients();
+
         public async Task<IEnumerable<ClientInfo>> GetClientsByName(string name) => await myDatabaseRepository.GetClientInfoList(name);
 
         public async Task UpdateClient(ClientInfo clientInfo) => await myDatabaseRepository.UpdateClient(clientInfo);

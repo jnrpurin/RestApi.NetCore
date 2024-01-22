@@ -6,6 +6,7 @@ namespace WebApp.Infra.Repository
 {
     public interface IMyDatabaseRepository
     {
+        Task<IEnumerable<ClientInfo>> GetAllClients();
         Task<IEnumerable<ClientInfo>> GetClientInfoList(string firstName);
         Task<int> UpdateClient(ClientInfo clientInfo);
     }
@@ -13,6 +14,13 @@ namespace WebApp.Infra.Repository
     public class MyDatabaseRepository : DapperRepositoryBase<ClientInfo>, IMyDatabaseRepository
     {
         public MyDatabaseRepository(MyDatabaseContext myDatabaseContext) : base(myDatabaseContext) { }
+
+        
+        public async Task<IEnumerable<ClientInfo>> GetAllClients()
+        {
+            var query = $@" SELECT * FROM dbo.Client ";
+            return await FindAsync(query);
+        }
 
         public async Task<IEnumerable<ClientInfo>> GetClientInfoList(string firstName)
         {
