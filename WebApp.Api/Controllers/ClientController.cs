@@ -2,13 +2,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Core.Interface;
 using WebApp.Domain.Models;
-using WebApp.Domain.Request;
 
 namespace WebApp.Api.Controllers
 {
     [AllowAnonymous]
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class ClientController : ControllerBase
     {
         private readonly ILogger<ClientController> logger;
@@ -20,27 +19,35 @@ namespace WebApp.Api.Controllers
             this.clientService = clientService;
         }
 
-        [HttpGet("/GetAllClients")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAllClients()
+        [HttpGet]
+        public async Task<IActionResult> GetClients()
         {
-            return BadRequest("In Development");
+            return Ok(await clientService.GetClients());
         }
 
-        [HttpGet("/GetClient")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetClientList([FromQuery] string clientRequest)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetClientById(int id)
         {
-            return BadRequest("In Development");
+            return Ok(await clientService.GetClientById(id));
         }
 
-        [HttpPost("/UpdateClient")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateClient([FromBody]string clientResponse, [FromHeader]int id)
+        [HttpPost]
+        public async Task<IActionResult> CreateClient([FromBody] Client client)
         {
-            return BadRequest("In Development");
+            return Ok(await clientService.CreateClient(client));
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateClient([FromBody] Client client)
+        {
+            return Ok(await clientService.UpdateClient(client));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            return Ok(await clientService.DeleteClient(id));
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+using WebApp.Core;
 using WebApp.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,8 +18,8 @@ builder.Services.AddEndpointsApiExplorer();
 //    );
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddBussinessServices();
 builder.Services.AddSqlServerDbSession(builder.Configuration);
+builder.Services.AddBussinessServices();
 
 var app = builder.Build();
 
