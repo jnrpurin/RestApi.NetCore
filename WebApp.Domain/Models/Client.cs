@@ -1,8 +1,11 @@
-﻿namespace WebApp.Domain.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApp.Domain.Models
 {
-    public class ClientInfo
+    public class Client
     {
-        public int ClientId { get; set; }
+        [Key] 
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }

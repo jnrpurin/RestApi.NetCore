@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Core.Interface;
 using WebApp.Domain.Models;
@@ -5,6 +6,7 @@ using WebApp.Domain.Request;
 
 namespace WebApp.Api.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("[controller]")]
     public class ClientController : ControllerBase
@@ -19,58 +21,26 @@ namespace WebApp.Api.Controllers
         }
 
         [HttpGet("/GetAllClients")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAllClients()
         {
-            var clientList = await clientService.GetAllClients();
-            return StatusCode(200, clientList);
+            return BadRequest("In Development");
         }
 
         [HttpGet("/GetClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetClientList([FromQuery] ClientRequest clientRequest)
+        public async Task<IActionResult> GetClientList([FromQuery] string clientRequest)
         {
-            var token = Request.Headers["Authorization"];
-            if (token.Count <= 0)
-                return Unauthorized();
-
-            logger.LogInformation($"Getting list of clients with name {clientRequest.FirstName}.");
-
-            var clientList = await clientService.GetClientsByName(clientRequest.FirstName);
-            if (clientList == null)
-            {
-                var resultNull = $"The client name {clientRequest.FirstName} did not return any value.";
-                logger.LogWarning(resultNull);
-                return BadRequest(new ErrorResponse { Code = "2", Message = resultNull });
-            }
-
-            return StatusCode(200, clientList);
+            return BadRequest("In Development");
         }
 
         [HttpPost("/UpdateClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateClient([FromBody]ClientResponse clientResponse, [FromHeader]int id)
+        public async Task<IActionResult> UpdateClient([FromBody]string clientResponse, [FromHeader]int id)
         {
-            var token = Request.Headers["Authorization"];
-            if (token.Count <= 0)
-                return Unauthorized();
-
-            if (id <= 0)
-                return BadRequest("Identificator not informed");
-
-            await clientService.UpdateClient(
-                new ClientInfo
-                {
-                    ClientId = id,
-                    FirstName = clientResponse.FirstName,
-                    LastName = clientResponse.LastName,
-                    Age = clientResponse.Age,
-                    Email = clientResponse.Email,
-                    PhoneNumber = clientResponse.PhoneNumber,
-                });
-
-            return StatusCode(200);
+            return BadRequest("In Development");
         }
     }
 }

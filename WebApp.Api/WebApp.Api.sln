@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Api", "WebApp.Api.csproj", "{F8184691-F1A3-4AA0-AEBE-414A6CD5EF8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Api", "WebApp.Api.csproj", "{F8184691-F1A3-4AA0-AEBE-414A6CD5EF8B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Core", "..\WebApp.Core\WebApp.Core.csproj", "{8BEEBE88-C984-4713-8F84-0C06942B84F5}"
 EndProject
