@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Core.Interface;
 using WebApp.Domain.Models;
-using WebApp.Domain.Request;
 
 namespace WebApp.Api.Controllers
 {

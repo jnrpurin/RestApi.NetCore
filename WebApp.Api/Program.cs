@@ -8,14 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-//builder.Services.AddCors(opt =>
-//    opt.AddDefaultPolicy(policy =>
-//        {
-//            policy.AllowAnyOrigin();
-//            policy.AllowAnyHeader();
-//            policy.AllowAnyMethod();
-//        })
-//    );
+builder.Services.AddCors(opt =>
+    opt.AddDefaultPolicy(policy =>
+        {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+        })
+    );
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSqlServerDbSession(builder.Configuration);
@@ -30,8 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-//app.UseCors();
+//app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthorization();
 
