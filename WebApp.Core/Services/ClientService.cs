@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Net;
 using WebApp.Core.Interface;
 using WebApp.Domain.Models;
 using WebApp.Domain.Request;
@@ -7,9 +6,9 @@ using WebApp.Infra.Context;
 
 namespace WebApp.Core.Services
 {
-    public class ClientService : IClientService
+    internal class ClientService : IClientService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
         public ClientService(AppDbContext appDbContext)
         {
             _context = appDbContext;
